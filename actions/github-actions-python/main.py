@@ -1,10 +1,6 @@
 #每个任务在30秒后，github action自动停止，所以需要定期重启
 # nohup /home/wth000/miniconda3/bin/python /home/wth000/gitee/blockchain/[grass挖矿]/no_proxy.py
 # -*- coding: utf-8 -*-
-# @Time     :2023/12/26 18:08
-# @Author   :ym
-# @File     :no_proxy.py
-# @Software :PyCharm
 import asyncio
 import random
 import ssl
@@ -81,5 +77,5 @@ async def main():
 
 
 if __name__ == '__main__':
-    # 运行主函数
+    # 运行主函数【使用异步可以规避github action的时间限制问题】
     asyncio.run(main())
