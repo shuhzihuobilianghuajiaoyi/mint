@@ -8,10 +8,37 @@ on:
     branches: [ "main" ]
   # 【定时任务】Cron 表达式 0 * * * * 表示每小时 0 分触发一次。参考 Cron Guru。
   schedule:
-  # #   - cron:  '*/30 * * * *'表示30秒执行一次任务
-  # #   - cron:  '0 * * * *'表示每小时 0 分触发一次
-  #   - cron:  '0 * * * *'
+    # #此示例在每天 5:30 和 17:30 UTC 触发工作流程
+    # - cron:  '30 5,17 * * *'
+    # #在每天每小时的每个第 15 分钟运行。
+    # - cron:  '15 * * * * '
+    # #在每天第 4 和第 5 小时的第 2 和第 10 分钟运行。
+    # - cron:  '2,10 4,5 * * * '
+    # #在第 4、5 和 6 小时的第 30 分钟运行。
+    # - cron:  '30 4-6 * * * '
+    # #在第 20 分钟到第 59 分钟每隔 15 分钟运行一次（第 20、35 和 50 分钟）。
+    # - cron:  '20/15 * * * * '
+    # #应该是每分钟都运行
+    # - cron:  '* * * * *'
+    # #应该是每分钟的第30，秒都运行
     - cron:  '*/30 * * * *'
+
+# #此示例触发工作流在每周一至周四 5:30 UTC 运行，但在周一和周三跳过 Not on Monday or Wednesday 步骤。
+# on:
+#   schedule:
+#     - cron: '30 5 * * 1,3'
+#     - cron: '30 5 * * 2,4'
+# jobs:
+#   test_schedule:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Not on Monday or Wednesday
+#         if: github.event.schedule != '30 5 * * 1,3'
+#         run: echo "This step will be skipped on Monday and Wednesday"
+#       - name: Every time
+#         run: echo "This step will always run"
+
+# 可以使用 permissions 修改授予 GITHUB_TOKEN 的默认权限，根据需要添加或删除访问权限，以便只授予所需的最低访问权限。
 permissions:
   contents: read
 
