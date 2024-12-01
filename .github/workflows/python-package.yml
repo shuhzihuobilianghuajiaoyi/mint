@@ -8,9 +8,8 @@ on:
     branches: [ "main" ]
   # 【定时任务】Cron 表达式 0 * * * * 表示每小时 0 分触发一次。参考 Cron Guru。
   schedule:
-    #此示例在每天 5:30 和 17:30 UTC 触发工作流程
-    # - cron:  '30 8,16,24 * * *'
-    - cron:  '30 8,20 * * *'
+    #此示例在每天 0:30\8:30\16:30[UTC] 触发工作流程
+    - cron:  '30 0,2,4,6,8,10,12,14,16,18,20,22 * * *'
     # #在每天每小时的每个第 15 分钟运行。
     # - cron:  '15 * * * * '
     # #在每天第 4 和第 5 小时的第 2 和第 10 分钟运行。
@@ -70,3 +69,8 @@ jobs:
       run: |
         cd actions/github-actions-python
         python main.py
+    
+    # #【防止失败后杀死实例】
+    # - name: Don't kill instace
+    #   if: ${{ failure() }}
+    #   run: sleep 1h # Prevent to killing instance after failure
